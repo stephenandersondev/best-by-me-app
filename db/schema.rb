@@ -15,12 +15,10 @@ ActiveRecord::Schema.define(version: 4) do
   create_table "businesses", force: :cascade do |t|
     t.string "name"
     t.string "address"
-    t.integer "phone_number"
-    t.string "type"
+    t.string "phone_number"
     t.float "rating"
     t.string "price_range"
-    t.string "website"
-    t.string "hours"
+    t.string "yelp_link"
   end
 
   create_table "checkins", force: :cascade do |t|
@@ -30,6 +28,8 @@ ActiveRecord::Schema.define(version: 4) do
 
   create_table "users", force: :cascade do |t|
     t.string "name"
+    t.string "username"
+    t.string "password"
   end
 
   create_table "wishlists", force: :cascade do |t|
