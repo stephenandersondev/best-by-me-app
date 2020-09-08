@@ -4,10 +4,15 @@ class Cli
     
     def initialize
         puts 'Welcome to BestByMe, the best resource for top-rated businesses in your area!'
-        self.prompt
+        self.login_prompt
     end
 
-    def prompt
+    def login_prompt
+        User.create_new_account_or_login
+        self.search_prompt
+    end
+
+    def search_prompt
         puts "To get started, please enter the zip code for your business search!"
         @zipcode = gets.chomp
         puts "Next, please enter the type of business you're looking for!"
