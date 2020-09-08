@@ -1,5 +1,3 @@
-require 'http'
-
 #This class makes calls to the Yelp API.
 class GetBusinesses
 

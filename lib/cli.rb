@@ -1,5 +1,3 @@
-require 'pry'
-
 class Cli
 
     attr_reader :zipcode, :type, :search
@@ -14,7 +12,6 @@ class Cli
     #Sends the user to the login screen, once authorized sends them to the main menu.
     def login_prompt
         @user = User.create_new_account_or_login
-        # binding.pry
         self.main_menu
     end
 
@@ -23,8 +20,9 @@ class Cli
         prompt.select("What would you like to do?") do |menu|
         #calls the appropriate method based on user input.
         menu.choice 'Search for a business', -> {self.search_prompt}
-        menu.choice 'View my wishlist', -> {Wishlist.user_wishlist(@user.id)}
-        menu.choice 'View my checkins', -> {Checkin.user_checkins(@user)}
+        menu.choice 'View my wishlist', -> {@user.user_wishlist}
+        menu.choice 'View my checkins', -> {@user.user_checkins}
+        menu.choice 'Most visited businesses', -> {Business.top_ten}
         end
     end
 
