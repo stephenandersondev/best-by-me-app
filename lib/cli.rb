@@ -3,6 +3,9 @@ class Cli
     attr_reader :zipcode, :type, :search
     
     def initialize
+
+        system "clear"
+
         puts 'Welcome to BestByMe, the best resource for top-rated businesses in your area!'
         self.login_prompt
     end
@@ -13,6 +16,9 @@ class Cli
     end
 
     def search_prompt
+
+        system "clear"
+
         puts "To get started, please enter the zip code for your business search!"
         @zipcode = gets.chomp
         puts "Next, please enter the type of business you're looking for!"
@@ -22,6 +28,11 @@ class Cli
     end
 
     def show_top_ten
+
+        system "clear"
+
+        puts "Here are the top 10 places!"
+        "-----------------------------------------------------------------------------"
         puts "1. #{@search["businesses"][0]["name"]} - #{@search["businesses"][0]["price"]}"
         puts "2. #{@search["businesses"][1]["name"]} - #{@search["businesses"][1]["price"]}"
         puts "3. #{@search["businesses"][2]["name"]} - #{@search["businesses"][2]["price"]}"
@@ -35,10 +46,12 @@ class Cli
         puts "-----------------------------------------------------------------------------"
         puts "To learn more about a business, enter the number to the left of it."
         @list_number = gets.chomp
+        system "clear"
         self.learn_more(@list_number)
     end
 
     def learn_more(number)
+        
         directory = @search["businesses"][(number.to_i - 1)]
 
         #Business_detail_variables

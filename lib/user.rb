@@ -7,21 +7,48 @@ class User < ActiveRecord::Base
     has_many :businesses, through: :checkins
     has_many :businesses, through: :wishlists
 
-    def create_new_account_or_login
-        puts "Would you like to create a new account or sign in to an existing account?"
-        puts "Enter '1' to create a new account. Enter '2' to sign in to an existing account."
-        user_welcome_input = gets.chomp.to_i
-        if user_welcome_input == 1
-            puts "Great! Let's create a new account for you!"
-            create_new_user_account
-        elsif user_welcome_input == 2
-            find_existing_user_account
-        else
-            puts "Invalid Entry, please enter 1 or 2"
-            create_new_account_or_login
+
+    def self.create_new_account_or_login
+        prompt = TTY::Prompt.new
+        prompt.select("Would you like to create a new account or sign in to an existing account?") do |menu|
+        menu.choice 'sign in to an existing account', -> {User.sign_into_existing_account}
+        menu.choice "create a new account", -> {User.create_new_user_account}
         end
     end
+     
+    def self.create_new_user_account
+     puts "\n\e[95mPlease enter your username\e[0m"
+     user_username_input = gets.chomp 
+     user = User.find_by(username: user_username_input) 
+     if user == nil
+        puts "\e[95mYour username has been saved. Please enter your first name.\e[0m"
+        user_name = gets.chomp
+        password = TTY::Prompt.new
+        user_password = password.mask("\e[95mPlease enter your password.\e[0m")
+        puts "\n\e[93m You're all set up #{user_name}! Your username is #{user_username_input}.\e[0m]"
+        user =  User.create(name:user_name, username: user_username_input, password: user_password)
+     else
+        puts "\n\e[91mSorry that username is already taken.\e[0m"
+        User.create_new_user_account
+     end
+    user
+end
 
-    def create_new_user_account
-        
+    def self.sign_into_existing_account
+    puts"\n\e[95mPlease enter your username.\e[0m"
+    user_username = gets.chomp
+    password = TTY::Prompt.new
+    user_password = password.mask("\e[95mPlease enter your password.\e[0m")
+    user = User.find_by(username: user_username, password: user_password)
+    system "clear"
+    if user == nil
+    puts "\n\e[91mThere is no user found with that username and password. Please try again.\e[0m"
+        User.create_new_account_or_login
+    else
+        user = User.find_by(username: user_username, password: user_password)
+        puts "\n\e[93mHello #{user.name}!"
+      
     end
+    user
+end
+end
