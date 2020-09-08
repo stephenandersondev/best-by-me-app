@@ -3,16 +3,16 @@ Business.destroy_all
 Checkin.destroy_all
 Wishlist.destroy_all
 
-User.create(name: Faker::Name.name)
-User.create(name: Faker::Name.name)
-User.create(name: Faker::Name.name)
-User.create(name: Faker::Name.name)
-User.create(name: Faker::Name.name)
-User.create(name: Faker::Name.name)
-User.create(name: Faker::Name.name)
-User.create(name: Faker::Name.name)
-User.create(name: Faker::Name.name)
-User.create(name: Faker::Name.name)
+User.create(name: Faker::Name.name, username: Faker::Internet.username, password: Faker::Internet.password) 
+User.create(name: Faker::Name.name, username: Faker::Internet.username, password: Faker::Internet.password)
+User.create(name: Faker::Name.name, username: Faker::Internet.username, password: Faker::Internet.password)
+User.create(name: Faker::Name.name, username: Faker::Internet.username, password: Faker::Internet.password)
+User.create(name: Faker::Name.name, username: Faker::Internet.username, password: Faker::Internet.password)
+User.create(name: Faker::Name.name, username: Faker::Internet.username, password: Faker::Internet.password)
+User.create(name: Faker::Name.name, username: Faker::Internet.username, password: Faker::Internet.password)
+User.create(name: Faker::Name.name, username: Faker::Internet.username, password: Faker::Internet.password)
+User.create(name: Faker::Name.name, username: Faker::Internet.username, password: Faker::Internet.password)
+User.create(name: Faker::Name.name, username: Faker::Internet.username, password: Faker::Internet.password)
 
 Business.create(name: Faker::Company.name)
 Business.create(name: Faker::Company.name)
