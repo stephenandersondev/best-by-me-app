@@ -11,3 +11,6 @@ tmp
 *.swp
 
 db/*.db
+
+#Ignore .env file
+/.env

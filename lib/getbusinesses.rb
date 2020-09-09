@@ -1,7 +1,7 @@
 #This class makes calls to the Yelp API.
 class GetBusinesses
 
-    API_KEY = "nJkIPOOTkj6xk5Qmh_TerB38xc3xzw4rfzbPw5cDyBgwyCoN3jOwC6IFYR4mVHEJgI8TQsi4Puqubb0hUqgzMGZUDrfOOrIV5DkDPB_nNomc1T3yI8_GVNOqIYRWX3Yx"
+    API_KEY = ENV["YELP_KEY"]
 
     URL = "https://api.yelp.com/v3/businesses/search"
 
