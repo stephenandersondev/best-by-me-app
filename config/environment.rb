@@ -1,8 +1,7 @@
-require 'bundler/setup'
+require "bundler/setup"
 Bundler.require
-Dotenv.load('./.env')
+Dotenv.load("./.env")
 
-ActiveRecord::Base.establish_connection(adapter: 'sqlite3', database: 'db/development.db')
+ActiveRecord::Base.establish_connection(adapter: "sqlite3", database: "db/development.db")
 ActiveRecord::Base.logger = nil
-require_all 'lib'
-
+require_all "lib"
