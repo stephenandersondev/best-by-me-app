@@ -4,7 +4,7 @@ class Checkin < ActiveRecord::Base
 
   def self.top_10_checks
     most_checked_in = Checkin.all.group(:business_id).count
-    most_checked_in.sort_by { |_k, v| -v }.to_h
+    most_checked_in.sort_by { |k, v| -v }.to_h
   end
 
   def self.get_businesses
@@ -23,5 +23,16 @@ class Checkin < ActiveRecord::Base
   def self.get_num_checkins
     hash = top_10_checks
     hash.values.take(10)
+  end
+
+  def self.get_users(id)
+    all_check = Checkin.where("business_id = ?", id)
+    users = all_check.collect { |obj| obj.user_id }
+    final_array = []
+    users.each { |id|
+      name_hold = User.find(id)
+      final_array << name_hold.username
+    }
+    (final_array.uniq).sort
   end
 end

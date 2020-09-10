@@ -173,17 +173,26 @@ class Cli
   #-----------------------------------------------wishlist---------------------------------------------------#
   #Allows user to add a business to their wishlist, or returns them to the top 10 list
   def add_to_wishlist(yes_or_no)
+    exist = Business.where("name = ? and address = ?", @bname, @baddress)
     case yes_or_no
     when "y"
-      new_business = Business.create(name: @bname, address: @baddress, phone_number: @bphone, rating: @brating, price_range: @bprice, yelp_link: @blink)
-      Wishlist.create(business_id: new_business.id, user_id: @user.id)
+      if exist.length == 0
+        new_business = Business.create(name: @bname, address: @baddress, phone_number: @bphone, rating: @brating, price_range: @bprice, yelp_link: @blink)
+        Wishlist.create(business_id: new_business.id, user_id: @user.id)
+      else
+        Wishlist.create(business_id: (exist[0]).id, user_id: @user.id)
+      end
       system "clear"
       puts "This business has been added to your wishlist! Feel free to add another."
       puts "----------------------------------------------------------------------------"
       self.show_top_ten
     when "Y"
-      new_business = Business.create(name: @bname, address: @baddress, phone_number: @bphone, rating: @brating, price_range: @bprice, yelp_link: @blink)
-      Wishlist.create(business_id: new_business.id, user_id: @user.id)
+      if exist.length == 0
+        new_business = Business.create(name: @bname, address: @baddress, phone_number: @bphone, rating: @brating, price_range: @bprice, yelp_link: @blink)
+        Wishlist.create(business_id: new_business.id, user_id: @user.id)
+      else
+        Wishlist.create(business_id: (exist[0]).id, user_id: @user.id)
+      end
       system "clear"
       puts "This business has been added to your wishlist! Feel free to add another."
       puts "----------------------------------------------------------------------------"
@@ -374,6 +383,10 @@ class Cli
     @brating3 = current_list[array_number].rating
     @bprice3 = current_list[array_number].price_range
     @blink3 = current_list[array_number].yelp_link
+    @bid3 = current_list[array_number].id
+
+    users_array = Checkin.get_users(@bid3)
+    counter = 0
 
     #Prints out the businesses details, prompts the user to add that to their wishlist
     puts "Name: #{@bname3}"
@@ -383,9 +396,42 @@ class Cli
     puts "Price:#{@bprice3}"
     puts "Yelp Link: #{@blink3}"
     puts "----------------------------------------------------------------------------"
+    puts "Users that have checked in here:"
+    users_array.each do |user|
+      puts "#{user}"
+      counter += 1
+    end
+    puts "----------------------------------------------------------------------------"
     puts "A wishlist is a place where you can save all of the businesses that you would like to visit. Would you like to add this business to your wishlist? (Y/N)"
 
     yes_or_no = gets.chomp
-    self.add_to_wishlist(yes_or_no)
+    self.add_to_wishlist_from_top_ten(yes_or_no)
+  end
+
+  def add_to_wishlist_from_top_ten(yes_or_no)
+    case yes_or_no
+    when "y"
+      Wishlist.create(business_id: @bid3, user_id: @user.id)
+      system "clear"
+      puts "This business has been added to your wishlist! Feel free to add another."
+      puts "----------------------------------------------------------------------------"
+      self.ten_most_checked
+    when "Y"
+      Wishlist.create(business_id: @bid3, user_id: @user.id)
+      system "clear"
+      puts "This business has been added to your wishlist! Feel free to add another."
+      puts "----------------------------------------------------------------------------"
+      self.ten_most_checked
+    when "n"
+      system "clear"
+      self.ten_most_checked
+    when "N"
+      system "clear"
+      self.ten_most_checked
+    else
+      puts "Invalid entry, please enter Y or N"
+      puts "----------------------------------------------------------------------------"
+      self.research_top_ten(@check_number)
+    end
   end
 end
