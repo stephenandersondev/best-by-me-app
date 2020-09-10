@@ -10,4 +10,6 @@ gem "faker"
 gem "rake"
 gem "http"
 gem "tty-prompt"
-gem 'dotenv'
+gem "dotenv"
+gem "pastel"
+gem "tty-font"
