@@ -1,7 +1,7 @@
 Best By Me App 
 ========================
 
-![Best-By-Me_Interface](https://github.com/[username]/[reponame]/blob/[branch]/image.jpg?raw=true)
+![Best-By-Me_Interface](https://github.com/stephenandersondev/best-by-me-app/blob/master/img/sign_in.png?raw=true)
 
 ## About
 
@@ -29,20 +29,25 @@ When a user enters a business type and a zipcode, our app responds
 
 ## Installation
 
-Add this line to your application's Gemfile:
+Our app relies on the following gems:
+  gem "activerecord", '~> 5.2'
+  gem "sinatra-activerecord"
+  gem "sqlite3", '~> 1.3.6'
+  gem "pry"
+  gem "require_all"
+  gem "faker"
+  gem "rake"
+  gem "http"
+  gem "tty-prompt"
+  gem "dotenv"
+  gem "pastel"
+  gem "tty-font"
+
+Be sure to execute:
 ```ruby
-gem "http"
+$ bundle install
 ```
 
-And then execute:
-```bash
-$ bundle
-```
-
-Or install it yourself as:
-```bash
-$ gem install http
-```
 
 Inside of your Ruby program do:
 ```ruby
