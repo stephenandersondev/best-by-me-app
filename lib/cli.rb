@@ -6,6 +6,7 @@ class Cli
     font = TTY::Font.new(:starwars)
     system "clear"
     puts Pastel.new.cyan(font.write("BestByMe"))
+    puts Pastel.new.magenta("----------------------------------------------------------------------------------------")
     puts Pastel.new.cyan("Welcome to BestByMe, the best resource for top-rated businesses in your area!")
 
     self.login_prompt
@@ -74,6 +75,7 @@ class Cli
   def main_menu
     font = TTY::Font.new(:doom)
     puts Pastel.new.cyan(font.write("MAIN MENU"))
+    puts Pastel.new.magenta("-----------------------------------------------------------------------------")
     prompt = TTY::Prompt.new
     prompt.select("What would you like to do?") do |menu|
       #calls the appropriate method based on user input.
@@ -85,7 +87,7 @@ class Cli
                     system "clear"
                     self.display_wishlist(User.user_wishlist(@user.id))
                   }
-      menu.choice "View my checkins", -> { self.display_checkins(User.user_checkins(@user.id)) }
+      menu.choice "View my check-ins", -> { self.display_checkins(User.user_checkins(@user.id)) }
       menu.choice "Most visited businesses", -> {
                     system "clear"
                     self.ten_most_checked
@@ -97,6 +99,9 @@ class Cli
   #---------------------------------business search--------------------------------#
   #Prompts the user to enter a zip code and business search term so the data can be fetched.
   def search_prompt
+    font = TTY::Font.new(:doom)
+    puts Pastel.new.cyan(font.write("SEARCH"))
+    puts Pastel.new.magenta("-----------------------------------------------------------------------------")
     puts Pastel.new.cyan("To get started, please enter the zip code for your business search!")
     @zipcode = gets.chomp
 
@@ -118,9 +123,9 @@ class Cli
 
   #Displays top 10 highest rated businesses based on the user's search
   def show_top_ten
-
+    font = TTY::Font.new("3d")
+    puts Pastel.new.cyan(font.write("TOP10"))
     #prints out list of top 10 businesses, prompts the user to learn more about a business.
-    puts Pastel.new.cyan.bold("Here are the top 10 places!")
     puts Pastel.new.magenta("-----------------------------------------------------------------------------")
     puts Pastel.new.cyan("1. #{@search["businesses"][0]["name"]} - #{@search["businesses"][0]["price"]}")
     puts Pastel.new.cyan("2. #{@search["businesses"][1]["name"]} - #{@search["businesses"][1]["price"]}")
@@ -217,6 +222,9 @@ class Cli
   end
 
   def display_wishlist(wish_bus)
+    font = TTY::Font.new(:doom)
+    puts Pastel.new.cyan(font.write("WISHLIST"))
+    puts Pastel.new.magenta("-----------------------------------------------------------------------------")
     if wish_bus.length == 0
       system "clear"
       puts Pastel.new.red("Your wishlist is currently empty. Search for a business to add one!")
@@ -328,6 +336,9 @@ class Cli
       self.main_menu
     else
       system "clear"
+      font = TTY::Font.new(:doom)
+      puts Pastel.new.cyan(font.write("CHECK-INS"))
+      puts Pastel.new.magenta("----------------------------------------------------------------------------")
       @check_bus = check_bus
       counter = 0
       @check_bus.each do |business|
@@ -344,6 +355,9 @@ class Cli
 
   #---------------------------------------top 10 check-ins list-----------------------------------------#
   def ten_most_checked
+    font = TTY::Font.new("3d")
+    puts Pastel.new.cyan(font.write("TOP10"))
+
     business_name = Checkin.get_business_name
     check_ins = Checkin.get_num_checkins
 
