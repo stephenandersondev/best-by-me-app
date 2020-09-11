@@ -5,7 +5,7 @@ BestByMe App
 
 ## About
 
-Welcome to the BestByMe CLI app! This was developed by Stephen Anderson (@stephenandersondev) and Ciara Picou (@ciara-picou) as part of week 3 of the Flatiron School Software Engineering program.
+Welcome to the BestByMe CLI app! This app was developed by Stephen Anderson (@stephenandersondev) and Ciara Picou (@ciara-picou) as part of week 3 of the Flatiron School Software Engineering program.
 
 
 ## Another Business Search Engine? Why should I care?
@@ -39,7 +39,7 @@ Our app relies on the following gems:
   gem "tty-font"
   ```
 
-**2.** Run bundle install to install all gems listed above :
+**2.** Run bundle install to install all the gems listed above :
 ```ruby
 $ bundle install
 ```
@@ -80,13 +80,13 @@ To learn more about a business, you may enter the number to the left of the busi
 
 At this point, you will have the option to add the business to your wishlist. Enter 'Y' if you would like to visit this business or 'N' if this business fails to spark your interest.
 
-Entering 'N' will take you back to the top 10 list, where you may enter 'M' to return to the main menu.
+Entering 'N' will take you back to the top 10 list, where you may explore other businesses or enter 'M' to return to the main menu.
     
 From the main menu, you can actually view your very own wishlist.
 
 ![BestByMe_Interface](https://github.com/stephenandersondev/best-by-me-app/blob/master/img/wishlist.png?raw=true)
 
-Upon visiting a business, you may add it to your check-in list. To do this you must go to your wishlist where you are instructed to Check in to the business by entering C. This step will remove the business from your wishlist and add it to your check-in list. You will be redirected to your wishlist where you can see that the item has been removed.
+Upon visiting a business, you may add it to your check-in list. To do this you must go to your wishlist where you are instructed to check-in to the business by entering 'C'. This step will remove the business from your wishlist and add it to your check-in list. You will be redirected to your wishlist where you can see that the item has been removed.
 
 ![BestByMe_Interface](https://github.com/stephenandersondev/best-by-me-app/blob/master/img/check_in.png?raw=true)
 
@@ -94,7 +94,7 @@ From the main menu, you can even view your check-in history by selecting 'View m
 
 ![Best-By-Me_Interface](https://github.com/stephenandersondev/best-by-me-app/blob/master/img/check_ins.png?raw=true)
 
-You may view our most visited business by selecting that option from the main menu. You may explore our most popular businesses by following the same steps you used to explore your personalized top ten list.
+You may also view our most visited business by selecting that option from the main menu. You may explore our most popular businesses by following the same steps you used to explore your personalized top ten list.
 
 ![Best-By-Me_Interface](https://github.com/stephenandersondev/best-by-me-app/blob/master/img/top_ten.png?raw=true)
 
