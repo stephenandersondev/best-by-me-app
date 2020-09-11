@@ -1,41 +1,30 @@
-Best By Me App 
+BestByMe App 
 ========================
 
 ![Best-By-Me_Interface](https://github.com/stephenandersondev/best-by-me-app/blob/master/img/sign_in.png?raw=true)
 
 ## About
 
-HTTP (The Gem! a.k.a. http.rb) is an easy-to-use client library for making requests
-from Ruby. It uses a simple method chaining system for building requests, similar to
-Python's [Requests].
-
-Under the hood, via [Ruby FFI bindings][http-parser-ffi], http.rb uses the Node.js
-[http-parser], a fast HTTP parsing native extension. This library
-isn't just yet another wrapper around Net::HTTP. It implements the HTTP protocol
-natively and outsources the parsing to native extensions.
-
-[requests]: http://docs.python-requests.org/en/latest/
-[http-parser]: https://github.com/nodejs/http-parser
-[http-parser-ffi]: https://github.com/cotag/http-parser
+Welcome to the BestByMe CLI app! This was developed by Stephen Anderson (@stephenandersondev) and Ciara Picou (@ciara-picou) as part of week 3 of the Flatiron School Software Engineering program.
 
 
 ## Another Business Search Engine? Why should I care?
 
-![Best-By-Me_Interface](https://github.com/stephenandersondev/best-by-me-app/blob/master/img/main_menu.png?raw=true)
+![BestByMe_Interface](https://github.com/stephenandersondev/best-by-me-app/blob/master/img/main_menu.png?raw=true)
 
-Best By Me is designed for users who do not have the time or 
-interest to spend hours reading reviews and researching businesses. 
-When a user enters a business type and a zipcode, our app responds
- with the top ten most highly rated business of that type in their area. 
+BestByMe is designed for users who do not have the time or interest to spend hours reading reviews and researching businesses. 
+When a user enters a business type and a zip code, our app responds with the top ten most highly rated business of that type in their area. 
 
  ![Best-By-Me_Interface](https://github.com/stephenandersondev/best-by-me-app/blob/master/img/top_ten.png?raw=true)
 
 
 ## Installation
 
-FORK AND CLONE
+**1.** Fork and Clone this repository.
+
 
 Our app relies on the following gems:
+  ```ruby
   gem "activerecord", '~> 5.2'
   gem "sinatra-activerecord"
   gem "sqlite3", '~> 1.3.6'
@@ -48,81 +37,72 @@ Our app relies on the following gems:
   gem "dotenv"
   gem "pastel"
   gem "tty-font"
+  ```
 
-Be sure to execute:
+**2.** Run bundle install to install all gems listed above :
 ```ruby
 $ bundle install
 ```
-DOTENV
+**3.** Use this link to guide you through the process of acquiring your own Yelp API key:
 
-Inside of your Ruby program do:
+https://www.yelp.com/developers/documentation/v3/authentication
+
+**4.** Inside of your cloned BestByMe repository, create a .env file in the root directory. Then input the following code snippet into .env with your newly acquired API key:
 ```ruby
 export YELP_KEY="place-your-yelp-API-key-here"
 ```
 
-...to pull it in as a dependency.
-
+**5.** You're now all set! To run the app, make sure you're in the root directory and simply run:
 ```ruby
-API_KEY = ENV["YELP_KEY"]
-```
-Use this link to guide you through the process of acquiring your own API key:
-
-https://www.yelp.com/developers/documentation/v3/authentication
-
-  RUBY BIN RUN RB
-
-
-## Documentation
-
-[Please see the http.rb wiki][documentation]
-for more detailed documentation and usage notes.
-
-The following API documentation is also available:
-
-* [YARD API documentation](http://www.rubydoc.info/gems/http/frames)
-* [Chainable module (all chainable methods)](http://www.rubydoc.info/gems/http/HTTP/Chainable)
-
-[documentation]: https://github.com/httprb/http/wiki
-
-### Basic Usage
-
-Here's some simple examples to get you started:
-
-```ruby
->> HTTP.get("https://github.com").to_s
-=> "\n\n\n<!DOCTYPE html>\n<html lang=\"en\" class=\"\">\n  <head prefix=\"o..."
+$ ruby bin/run.rb
 ```
 
-That's all it takes! To obtain an `HTTP::Response` object instead of the response
-body, all we have to do is omit the `#to_s` on the end:
+## Basic Usage
 
-```ruby
->> HTTP.get("https://github.com")
-=> #<HTTP::Response/1.1 200 OK {"Server"=>"GitHub.com", "Date"=>"Tue, 10 May...>
-```
+To use BestByMe, you must first create an account.
 
-We can also obtain an `HTTP::Response::Body` object for this response:
+After you've logged in to your account, you will be directed to the main menu where you have the option of viewing your wishlist, check-ins, and the most visited businesses or beginning your search. You may scroll through 
+your options with the arrow keys and select an option by pressing enter.
 
-```ruby
->> HTTP.get("https://github.com").body
-=> #<HTTP::Response::Body:3ff756862b48 @streaming=false>
-```
+![BestByMe_Interface](https://github.com/stephenandersondev/best-by-me-app/blob/master/img/main_menu.png?raw=true)
 
-The response body can be streamed with `HTTP::Response::Body#readpartial`.
-In practice, you'll want to bind the HTTP::Response::Body to a local variable
-and call `#readpartial` on it repeatedly until it returns `nil`:
+To begin a new search, you simply enter a zip code and the type of business you are looking for.
 
-```ruby
->> body = HTTP.get("https://github.com").body
-=> #<HTTP::Response::Body:3ff756862b48 @streaming=false>
->> body.readpartial
-=> "\n\n\n<!DOCTYPE html>\n<html lang=\"en\" class=\"\">\n  <head prefix=\"o..."
->> body.readpartial
-=> "\" href=\"/apple-touch-icon-72x72.png\">\n    <link rel=\"apple-touch-ic..."
-# ...
->> body.readpartial
-=> nil
-```
+![BestByMe_Interface](https://github.com/stephenandersondev/best-by-me-app/blob/master/img/search.png?raw=true)
+
+BestByMe will display the top-ten businesses of that type in your area.
+
+![BestByMe_Interface](https://github.com/stephenandersondev/best-by-me-app/blob/master/img/search_top_ten.png?raw=true)
+
+To learn more about a business, you may enter the number to the left of the business. This will allow you to view its address, phone number, rating, price range and the yelp page link for that business. 
+
+![BestByMe_Interface](https://github.com/stephenandersondev/best-by-me-app/blob/master/img/business_detail.png?raw=true)
+
+At this point, you will have the option to add the business to your wishlist. Enter 'Y' if you would like to visit this business or 'N' if this business fails to spark your interest.
+
+Entering 'N' will take you back to the top 10 list, where you may enter 'M' to return to the main menu.
+    
+From the main menu, you can actually view your very own wishlist.
+
+![BestByMe_Interface](https://github.com/stephenandersondev/best-by-me-app/blob/master/img/wishlist.png?raw=true)
+
+Upon visiting a business, you may add it to your check-in list. To do this you must go to your wishlist where you are instructed to Check in to the business by entering C. This step will remove the business from your wishlist and add it to your check-in list. You will be redirected to your wishlist where you can see that the item has been removed.
+
+![BestByMe_Interface](https://github.com/stephenandersondev/best-by-me-app/blob/master/img/check_in.png?raw=true)
+
+From the main menu, you can even view your check-in history by selecting 'View my check-ins'.
+
+![Best-By-Me_Interface](https://github.com/stephenandersondev/best-by-me-app/blob/master/img/check_ins.png?raw=true)
+
+You may view our most visited business by selecting that option from the main menu. You may explore our most popular businesses by following the same steps you used to explore your personalized top ten list.
+
+![Best-By-Me_Interface](https://github.com/stephenandersondev/best-by-me-app/blob/master/img/top_ten.png?raw=true)
+
+You can even see who all has checked-in at these top businesses.
+
+![Best-By-Me_Interface](https://github.com/stephenandersondev/best-by-me-app/blob/master/img/user_list.png?raw=true)
+
+We hope our app introduces you to many new and exciting places! 😊
 
 
 
