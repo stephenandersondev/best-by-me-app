@@ -21,13 +21,19 @@ natively and outsources the parsing to native extensions.
 
 ## Another Business Search Engine? Why should I care?
 
+![Best-By-Me_Interface](https://github.com/stephenandersondev/best-by-me-app/blob/master/img/main_menu.png?raw=true)
+
 Best By Me is designed for users who do not have the time or 
 interest to spend hours reading reviews and researching businesses. 
 When a user enters a business type and a zipcode, our app responds
  with the top ten most highly rated business of that type in their area. 
 
+ ![Best-By-Me_Interface](https://github.com/stephenandersondev/best-by-me-app/blob/master/img/top_ten.png?raw=true)
+
 
 ## Installation
+
+FORK AND CLONE
 
 Our app relies on the following gems:
   gem "activerecord", '~> 5.2'
@@ -47,7 +53,7 @@ Be sure to execute:
 ```ruby
 $ bundle install
 ```
-
+DOTENV
 
 Inside of your Ruby program do:
 ```ruby
@@ -63,7 +69,7 @@ Use this link to guide you through the process of acquiring your own API key:
 
 https://www.yelp.com/developers/documentation/v3/authentication
 
-  
+  RUBY BIN RUN RB
 
 
 ## Documentation
