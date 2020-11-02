@@ -7,6 +7,8 @@ BestByMe App
 
 Welcome to the BestByMe CLI app! This app was developed by Stephen Anderson (@stephenandersondev) and Ciara Picou (@ciara-picou) as part of week 3 of the Flatiron School Software Engineering program.
 
+## Demo Video
+https://youtu.be/ubLDJvNRf8Y
 
 ## Another Business Search Engine? Why should I care?
 
